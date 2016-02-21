@@ -82,9 +82,8 @@ def plugin_loaded():
     write_menu()
 
 def convert_to_system_filepath(filepath):
-    platform = "windows"
     CYG_DRIVE = "/cygdrive/"
-    if platform is "windows" and get_setting("using_cygwin") is True:
+    if sublime.platform() is "windows" and get_setting("using_cygwin") is True:
         if filepath.startswith(CYG_DRIVE) :
             filepath = filepath[len(CYG_DRIVE):]
             filepath = filepath[0].upper() + ":/" + filepath[2:]
