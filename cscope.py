@@ -270,20 +270,15 @@ class CscopeSublimeWorker(threading.Thread):
         return output
 
     def run_cscope(self, mode, word):
-        newline = ''
-        if self.platform == "windows":
-            newline = '\r\n'
-            if get_setting("using_cygwin") is True:
-                newline = '\n'
-        else:
-            newline = '\n'
+        newline = '\n'
 
         cscope_arg_list = [self.executable, '-dL', '-f', self.database, '-' + str(mode) + word]
         popen_arg_list = {
             "shell": False,
             "stdout": subprocess.PIPE,
             "stderr": subprocess.PIPE,
-            "cwd": self.root
+            "cwd": self.root,
+            "universal_newlines": True
         }
         if (self.platform == "windows"):
             popen_arg_list["creationflags"] = 0x08000000
