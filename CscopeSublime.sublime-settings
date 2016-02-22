@@ -24,9 +24,6 @@
     // Linux and OS X example: "executable": "/usr/bin/cscope"
     // Windows example:        "executable": "C:\\cscope\\cscope.exe"
     "executable": "cscope",
-
-    // enable if you are using cygwin
-    "using_cygwin": true,
     
     "cscope_c_sybmol": true,
     "cscope_global_definition": true,

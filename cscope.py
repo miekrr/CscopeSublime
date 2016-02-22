@@ -83,7 +83,7 @@ def plugin_loaded():
 
 def convert_to_system_filepath(filepath):
     CYG_DRIVE = "/cygdrive/"
-    if sublime.platform() is "windows" and get_setting("using_cygwin") is True:
+    if sublime.platform() is "windows":
         if filepath.startswith(CYG_DRIVE) :
             filepath = filepath[len(CYG_DRIVE):]
             filepath = filepath[0].upper() + ":/" + filepath[2:]
@@ -458,7 +458,7 @@ class CscopeCommand(sublime_plugin.TextCommand):
         self.workers = []
 
         symbol = self.view.substr(self.view.word(first_selection))
-        if get_setting("prompt_before_searching") == True or symbol is "":
+        if get_setting("prompt_before_searching") == True or len(symbol) <= 2:
             sublime.active_window().show_input_panel('Search Cscope for ' + CSCOPE_SEARCH_MODES[self.mode] + ':',
                                                      symbol,
                                                      self.on_search_confirmed,
